@@ -5,7 +5,11 @@ import UsersManager from "./manager";
 
 export default async function Page() {
   const session = await getSession();
-  if (!session || session.profile.role !== "global_admin") redirect("/dashboard");
+  
+  // Checagem dupla para o TypeScript
+  if (!session || !session.profile) redirect("/login");
+  
+  if (session.profile.role !== "global_admin") redirect("/dashboard");
 
   const supabase = createClient();
   const { data: users } = await supabase
