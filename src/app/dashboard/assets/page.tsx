@@ -19,7 +19,8 @@ export default async function AssetsPage() {
       </div>
       <div className="card overflow-x-auto p-0">
         <table className="w-full text-sm">
-          <thead className="bg-slate-100 text-left">
+          {/* AQUI ESTAVA O ERRO: Adicionado dark:bg-slate-800 e dark:text-slate-200 */}
+          <thead className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 text-left">
             <tr>
               <th className="p-3">Nº Ativo</th>
               <th className="p-3">Categoria</th>
@@ -35,7 +36,7 @@ export default async function AssetsPage() {
               <tr><td className="p-3 text-slate-500" colSpan={7}>Nenhum ativo cadastrado.</td></tr>
             )}
             {assets.map((a: any) => (
-              <tr key={a.id} className="border-t">
+              <tr key={a.id} className="border-t dark:border-slate-800">
                 <td className="p-3 font-medium">{a.asset_number}</td>
                 <td className="p-3">{a.categories?.name}</td>
                 <td className="p-3">{[a.brand, a.model].filter(Boolean).join(" / ")}</td>
@@ -43,7 +44,7 @@ export default async function AssetsPage() {
                 <td className="p-3">{a.origin}</td>
                 <td className="p-3">{statusLabel[a.status] ?? a.status}</td>
                 <td className="p-3 text-right">
-                  <Link className="text-brand-600 hover:underline"
+                  <Link className="text-brand-600 hover:underline dark:text-brand-400"
                         href={`/dashboard/assets/${a.id}`}>
                     Abrir
                   </Link>
