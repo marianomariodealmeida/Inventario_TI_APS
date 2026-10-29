@@ -5,7 +5,7 @@ import AssetDetail from "./detail";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const session = await getSession();
-  if (!session) redirect("/login");
+  if (!session || !session.profile) redirect("/login");
 
   const supabase = createClient();
   const { data: asset } = await supabase
