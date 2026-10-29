@@ -3,8 +3,8 @@ import { getSession, listCategories, listUnits } from "@/lib/queries";
 import NewAssetForm from "./form";
 
 export default async function Page() {
-  const session = await getSession();
-  if (!session) redirect("/login");
+   const session = await getSession();
+  if (!session || !session.profile) redirect("/login");
   const [categories, units] = await Promise.all([listCategories(), listUnits()]);
   return (
     <NewAssetForm
