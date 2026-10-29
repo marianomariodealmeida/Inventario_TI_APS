@@ -6,7 +6,7 @@ export default async function DashboardLayout({
   children,
 }: { children: React.ReactNode }) {
   const session = await getSession();
-  if (!session) redirect("/login");
+  if (!session || !session.profile) redirect("/login");
   const { profile } = session;
   const isAdmin = profile.role === "global_admin";
 
